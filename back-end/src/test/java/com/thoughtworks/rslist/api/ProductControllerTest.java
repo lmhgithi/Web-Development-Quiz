@@ -42,7 +42,6 @@ class ProductControllerTest {
         orderRepository.deleteAll();
         ProductEntity productEntity = ProductEntity.builder()
                 .name("可乐1")
-                .quantity(1)
                 .price(1)
                 .unit("瓶")
                 .imgUrl("../images/cola.jpg")
@@ -50,7 +49,6 @@ class ProductControllerTest {
         productRepository.save(productEntity);
         ProductEntity productEntity2 = ProductEntity.builder()
                 .name("雪碧1")
-                .quantity(1)
                 .price(1)
                 .unit("瓶")
                 .imgUrl("../images/spirit.jpg")
@@ -63,7 +61,6 @@ class ProductControllerTest {
         mockMvc.perform(get("/product"))
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[0].name", is("可乐1")))
-                .andExpect(jsonPath("$[0].quantity", is(1)))
                 .andExpect(jsonPath("$[0].unit", is("瓶")))
                 .andExpect(jsonPath("$[0].imgUrl", is("../images/cola.jpg")))
                 .andExpect(status().isOk());
@@ -91,5 +88,26 @@ class ProductControllerTest {
         int quantity = orderRepository.findAll().get(0).getQuantity();
         assertEquals(2, quantity);
 
+    }
+
+    @Test
+    void shouldAddProduct() throws Exception {
+        Product product = Product.builder()
+                .name("雪碧5")
+                .price(1)
+                .unit("瓶")
+                .imgUrl("../images/spirit.jpg")
+                .build();
+        String requestJson = objectMapper.writeValueAsString(product);
+        mockMvc.perform(post("/product/").content(requestJson).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+
+        mockMvc.perform(get("/product"))
+                .andExpect(jsonPath("$", hasSize(3)))
+                .andExpect(jsonPath("$[2].name", is("雪碧5")))
+                .andExpect(jsonPath("$[2].price", is(1)))
+                .andExpect(jsonPath("$[2].unit", is("瓶")))
+                .andExpect(jsonPath("$[2].imgUrl", is("../images/spirit.jpg")))
+                .andExpect(status().isOk());
     }
 }

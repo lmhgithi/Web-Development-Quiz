@@ -1,5 +1,6 @@
 package com.thoughtworks.rslist.api;
 
+import com.thoughtworks.rslist.domain.Product;
 import com.thoughtworks.rslist.entity.ProductEntity;
 import com.thoughtworks.rslist.service.OrderService;
 import com.thoughtworks.rslist.service.ProductService;
@@ -29,5 +30,12 @@ public class ProductController {
     public ResponseEntity addProductToOrder(@PathVariable int id) {
         return orderService.addProductToOrder(id);
     }
+
+    @PostMapping("/product")
+    @CrossOrigin
+    public ResponseEntity addProduct(@RequestBody Product product) {
+        return productService.addProduct(product);
+    }
+
 
 }

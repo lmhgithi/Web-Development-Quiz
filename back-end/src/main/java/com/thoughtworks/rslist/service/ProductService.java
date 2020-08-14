@@ -7,6 +7,7 @@ import com.thoughtworks.rslist.repository.ProductRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -24,4 +25,14 @@ public class ProductService {
         return ResponseEntity.ok(productRepository.findAll());
     }
 
+    public ResponseEntity addProduct(Product product) {
+        ProductEntity productEntity = ProductEntity.builder()
+                .name(product.getName())
+                .price(product.getPrice())
+                .unit(product.getUnit())
+                .imgUrl(product.getImgUrl())
+                .build();
+        productRepository.save(productEntity);
+        return ResponseEntity.ok().build();
+    }
 }

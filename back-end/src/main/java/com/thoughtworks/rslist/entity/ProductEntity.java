@@ -22,9 +22,6 @@ public class ProductEntity {
     private String name;
 
     @NotNull
-    private int quantity;
-
-    @NotNull
     private int price;
 
     @NotNull

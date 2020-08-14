@@ -57,7 +57,6 @@ class OrderControllerTest {
         orderRepository.save(orderEntity2);
         ProductEntity productEntity = ProductEntity.builder()
                 .name("可乐1")
-                .quantity(1)
                 .price(1)
                 .unit("瓶")
                 .imgUrl("../images/cola.jpg")
@@ -65,7 +64,6 @@ class OrderControllerTest {
         productRepository.save(productEntity);
         ProductEntity productEntity2 = ProductEntity.builder()
                 .name("雪碧1")
-                .quantity(1)
                 .price(1)
                 .unit("瓶")
                 .imgUrl("../images/spirit.jpg")
