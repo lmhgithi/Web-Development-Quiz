@@ -8,7 +8,7 @@ class Product extends Component {
         this.setState({
             handleFlag: true,
         })
-        URL = "http://localhost:8080/order"
+        URL = `http://localhost:8080/product/${this.props.product.productId}`
         fetch(URL, {
             method:"POST",
         }).then(Response => {
@@ -16,7 +16,6 @@ class Product extends Component {
                 this.setState({
                     handleFlag: false,
                 })
-                return Response.json();
             }
             else {
                 this.setState({

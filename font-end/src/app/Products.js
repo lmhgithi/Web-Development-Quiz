@@ -9,7 +9,9 @@ class Products extends Component {
 
     componentDidMount = () => {
         URL = "http://localhost:8080/product"
-        fetch(URL).then(Response => {
+        fetch(URL, {
+            method:"GET",
+        }).then(Response => {
             if (Response.status === 200) {
                 return Response.json();
             }

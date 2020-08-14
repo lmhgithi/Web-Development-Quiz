@@ -39,10 +39,6 @@ class ProductControllerTest {
     @BeforeEach
     void setup() {
         productRepository.deleteAll();
-    }
-
-    @Test
-    void shouldGetProduct() throws Exception {
         ProductEntity productEntity = ProductEntity.builder()
                 .name("可乐1")
                 .quantity(1)
@@ -59,6 +55,10 @@ class ProductControllerTest {
                 .imgUrl("../images/spirit.jpg")
                 .build();
         productRepository.save(productEntity2);
+    }
+
+    @Test
+    void shouldGetProduct() throws Exception {
         mockMvc.perform(get("/product"))
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[0].name", is("可乐1")))
@@ -70,14 +70,6 @@ class ProductControllerTest {
 
     @Test
     void shouldAddProductToOrder() throws Exception {
-        ProductEntity productEntity = ProductEntity.builder()
-                .name("可乐1")
-                .quantity(1)
-                .price(1)
-                .unit("瓶")
-                .imgUrl("../images/cola.jpg")
-                .build();
-        productRepository.save(productEntity);
         int productId = productRepository.findAll().get(0).getProductId();
         mockMvc.perform(post("/product/"+productId))
                 .andExpect(status().isOk());
