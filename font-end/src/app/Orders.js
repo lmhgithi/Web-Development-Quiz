@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Order from './Order'
 import '../styles/Orders.less'
-import OrderNotExists from './OrderNotExists'
 
 class Orders extends Component {
     state = {

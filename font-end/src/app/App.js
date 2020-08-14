@@ -6,6 +6,7 @@ import NotMatch from './NotMatch'
 import Product from './Products';
 import Order from './Orders';
 import orderNotExists from './OrderNotExists';
+import CreateProduct from './CreateProduct'
 
 class App extends Component {
   render() {
@@ -15,11 +16,13 @@ class App extends Component {
           <div className="header">
             <Link className='homeLink' to="/">商城</Link>
             <Link className='orderLink' to="/order">订单</Link>
+            <Link className='addLink' to="/add">添加商品</Link>
           </div>
           <div className="body">
             <Switch>
               <Route exact path='/' component={Product} />
               <Route exact path='/order' component={Order} />
+              <Route exact path='/add' component={CreateProduct} />
               <Route exact path='/orderNotExixts' component={orderNotExists} />
               <Route component={NotMatch} />
             </Switch>
