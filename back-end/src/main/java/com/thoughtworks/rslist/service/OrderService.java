@@ -25,14 +25,21 @@ public class OrderService {
     public ResponseEntity addProductToOrder(int id) {
         Optional<ProductEntity> productEntity = productRepository.findById(id);
         if (productEntity.isPresent()) {
-            OrderEntity orderEntity = OrderEntity.builder()
-                    .productId(id)
-                    .name(productEntity.get().getName())
-                    .quantity(5)
-                    .price(productEntity.get().getPrice())
-                    .unit(productEntity.get().getUnit())
-                    .build();
-            orderRepository.save(orderEntity);
+            Optional<OrderEntity> orderEntityExist = orderRepository.findByName(productEntity.get().getName());
+            if (orderEntityExist.isPresent()) {
+                orderEntityExist.get().setQuantity(orderEntityExist.get().getQuantity()+1);
+                orderRepository.save(orderEntityExist.get());
+            } else {
+                OrderEntity orderEntityNewCreate = OrderEntity.builder()
+                        .productId(id)
+                        .name(productEntity.get().getName())
+                        .quantity(1)
+                        .price(productEntity.get().getPrice())
+                        .unit(productEntity.get().getUnit())
+                        .build();
+                orderRepository.save(orderEntityNewCreate);
+            }
+
             return ResponseEntity.ok().build();
         }
         return ResponseEntity.badRequest().build();

@@ -39,6 +39,7 @@ class ProductControllerTest {
     @BeforeEach
     void setup() {
         productRepository.deleteAll();
+        orderRepository.deleteAll();
         ProductEntity productEntity = ProductEntity.builder()
                 .name("可乐1")
                 .quantity(1)
@@ -76,5 +77,19 @@ class ProductControllerTest {
 
         List<OrderEntity> orders = orderRepository.findAll();
         assertEquals(1, orders.size());
+    }
+
+    @Test
+    void shouldAddProductToOrderAndOnlyIncreaseQuantity() throws Exception {
+        int productId = productRepository.findAll().get(0).getProductId();
+        mockMvc.perform(post("/product/"+productId))
+                .andExpect(status().isOk());
+        mockMvc.perform(post("/product/"+productId))
+                .andExpect(status().isOk());
+        List<OrderEntity> orders = orderRepository.findAll();
+        assertEquals(1, orders.size());
+        int quantity = orderRepository.findAll().get(0).getQuantity();
+        assertEquals(2, quantity);
+
     }
 }

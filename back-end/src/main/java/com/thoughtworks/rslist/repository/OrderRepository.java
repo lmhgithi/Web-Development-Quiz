@@ -8,4 +8,5 @@ import java.util.Optional;
 
 public interface OrderRepository extends CrudRepository<OrderEntity, Integer> {
     List<OrderEntity> findAll();
+    Optional<OrderEntity> findByName(String name);
 }
