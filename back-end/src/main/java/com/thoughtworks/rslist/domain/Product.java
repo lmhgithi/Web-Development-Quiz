@@ -17,6 +17,9 @@ public class Product {
     private int quantity;
 
     @NotNull
+    private int price;
+
+    @NotNull
 
     private String unit;
 

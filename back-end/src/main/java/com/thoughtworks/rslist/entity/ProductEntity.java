@@ -25,6 +25,9 @@ public class ProductEntity {
     private int quantity;
 
     @NotNull
+    private int price;
+
+    @NotNull
 
     private String unit;
 

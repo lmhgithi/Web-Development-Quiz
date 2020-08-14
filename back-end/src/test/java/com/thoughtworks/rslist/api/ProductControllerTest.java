@@ -14,6 +14,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
+
 import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -27,6 +28,7 @@ class ProductControllerTest {
     MockMvc mockMvc;
     @Autowired
     ProductRepository productRepository;
+
     @Autowired
 
     @BeforeEach
@@ -39,25 +41,25 @@ class ProductControllerTest {
         ProductEntity productEntity = ProductEntity.builder()
                 .name("可乐1")
                 .quantity(1)
+                .price(1)
                 .unit("瓶")
-                .imgUrl("url")
+                .imgUrl("../images/cola.jpg")
                 .build();
         productRepository.save(productEntity);
         ProductEntity productEntity2 = ProductEntity.builder()
                 .name("雪碧1")
                 .quantity(1)
+                .price(1)
                 .unit("瓶")
-                .imgUrl("url2")
+                .imgUrl("../images/spirit.jpg")
                 .build();
         productRepository.save(productEntity2);
-        Product product = new Product("可乐1", 1, "瓶","url");
-        String userJson = objectMapper.writeValueAsString(product);
         mockMvc.perform(get("/product"))
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[0].name", is("可乐1")))
                 .andExpect(jsonPath("$[0].quantity", is(1)))
                 .andExpect(jsonPath("$[0].unit", is("瓶")))
-                .andExpect(jsonPath("$[0].imgUrl", is("url")))
+                .andExpect(jsonPath("$[0].imgUrl", is("../images/cola.jpg")))
                 .andExpect(status().isOk());
     }
 }
