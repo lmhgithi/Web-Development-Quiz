@@ -26,6 +26,9 @@ public class ProductService {
     }
 
     public ResponseEntity addProduct(Product product) {
+        if(productRepository.findByName(product.getName()).isPresent()){
+            return ResponseEntity.badRequest().build();
+        }
         ProductEntity productEntity = ProductEntity.builder()
                 .name(product.getName())
                 .price(product.getPrice())

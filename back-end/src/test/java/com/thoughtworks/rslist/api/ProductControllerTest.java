@@ -110,4 +110,17 @@ class ProductControllerTest {
                 .andExpect(jsonPath("$[2].imgUrl", is("../images/spirit.jpg")))
                 .andExpect(status().isOk());
     }
+
+    @Test
+    void shouldNotAddProductWhenNameExists() throws Exception {
+        Product product = Product.builder()
+                .name("雪碧1")
+                .price("1")
+                .unit("瓶")
+                .imgUrl("../images/spirit.jpg")
+                .build();
+        String requestJson = objectMapper.writeValueAsString(product);
+        mockMvc.perform(post("/product/").content(requestJson).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+    }
 }
