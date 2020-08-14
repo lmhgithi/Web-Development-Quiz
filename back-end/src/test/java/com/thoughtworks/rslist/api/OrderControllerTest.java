@@ -91,4 +91,11 @@ class OrderControllerTest {
         assertEquals(1, orderRepository.findAll().size());
     }
 
+    @Test
+    void shouldReturnBadRequestWhenDeleteOrderAndOrderNotExists() throws Exception {
+        int orderIdToDelete = -1;
+        mockMvc.perform(delete("/order/"+orderIdToDelete))
+                .andExpect(status().isBadRequest());
+    }
+
 }
