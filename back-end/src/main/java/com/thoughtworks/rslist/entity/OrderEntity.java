@@ -24,6 +24,6 @@ public class OrderEntity {
     private Integer productId;
     private String name;
     private int quantity;
-    private int price;
+    private String price;
     private String unit;
 }

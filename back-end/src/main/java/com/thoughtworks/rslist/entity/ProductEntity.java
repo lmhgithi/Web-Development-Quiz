@@ -22,7 +22,7 @@ public class ProductEntity {
     private String name;
 
     @NotNull
-    private int price;
+    private String price;
 
     @NotNull
 

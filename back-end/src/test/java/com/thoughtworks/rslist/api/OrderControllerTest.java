@@ -43,7 +43,7 @@ class OrderControllerTest {
                 .name("可乐1")
                 .productId(1)
                 .quantity(1)
-                .price(1)
+                .price("1")
                 .unit("瓶")
                 .build();
         orderRepository.save(orderEntity);
@@ -51,20 +51,20 @@ class OrderControllerTest {
                 .name("雪碧1")
                 .productId(2)
                 .quantity(1)
-                .price(1)
+                .price("1")
                 .unit("瓶")
                 .build();
         orderRepository.save(orderEntity2);
         ProductEntity productEntity = ProductEntity.builder()
                 .name("可乐1")
-                .price(1)
+                .price("1")
                 .unit("瓶")
                 .imgUrl("../images/cola.jpg")
                 .build();
         productRepository.save(productEntity);
         ProductEntity productEntity2 = ProductEntity.builder()
                 .name("雪碧1")
-                .price(1)
+                .price("1")
                 .unit("瓶")
                 .imgUrl("../images/spirit.jpg")
                 .build();

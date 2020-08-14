@@ -8,15 +8,11 @@ class CreateProduct extends Component {
         url: '',
     }
     handleClickaddProductButton = () => {
-        let formData = new FormData();
-        formData.append("name",this.state.name);
-        formData.append("price",this.state.price);
-        formData.append("unit",this.state.unit);
-        formData.append("url",this.state.url);
+        console.log(this.state)
         URL = `http://localhost:8080/product/`
         fetch(URL, {
             method: "POST",
-            body: formData,
+            body: this.state.json(),
         }).then(Response => {
             if (Response.status === 200) {
                 this.setState({
@@ -49,34 +45,34 @@ class CreateProduct extends Component {
                     />
 
                     <label htmlFor='name'>价格</label>
-                    <input type='text' name='name'
+                    <input type='text' name='price'
                         value={this.state.price}
                         placeholder='价格'
                         onChange={() => { this.handleChange('price', event) }}
                     />
 
                     <label htmlFor='name'>单位</label>
-                    <input type='text' name='name'
+                    <input type='text' name='unit'
                         value={this.state.unit}
                         placeholder='单位'
                         onChange={() => { this.handleChange('unit', event) }}
                     />
 
                     <label htmlFor='name'>图片</label>
-                    <input type='text' name='name'
+                    <input type='text' name='url'
                         value={this.state.url}
                         placeholder='URL'
                         onChange={() => { this.handleChange('url', event) }}
                     />
 
-                    <input className='submitButton' type='submit' name='Submit' value='Submit'
+                    <input className='submitButton' type='submit' name='Submit'
                         disabled={!this.state.name ||
                             !this.state.price ||
                             !this.state.unit ||
                             !this.state.url}
+                        onClick={this.handleClickaddProductButton}
                     />
                 </form>
-
 
             </div>
         )

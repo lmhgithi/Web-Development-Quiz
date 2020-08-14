@@ -42,14 +42,14 @@ class ProductControllerTest {
         orderRepository.deleteAll();
         ProductEntity productEntity = ProductEntity.builder()
                 .name("可乐1")
-                .price(1)
+                .price("1")
                 .unit("瓶")
                 .imgUrl("../images/cola.jpg")
                 .build();
         productRepository.save(productEntity);
         ProductEntity productEntity2 = ProductEntity.builder()
                 .name("雪碧1")
-                .price(1)
+                .price("1")
                 .unit("瓶")
                 .imgUrl("../images/spirit.jpg")
                 .build();
@@ -94,7 +94,7 @@ class ProductControllerTest {
     void shouldAddProduct() throws Exception {
         Product product = Product.builder()
                 .name("雪碧5")
-                .price(1)
+                .price("1")
                 .unit("瓶")
                 .imgUrl("../images/spirit.jpg")
                 .build();
@@ -105,7 +105,7 @@ class ProductControllerTest {
         mockMvc.perform(get("/product"))
                 .andExpect(jsonPath("$", hasSize(3)))
                 .andExpect(jsonPath("$[2].name", is("雪碧5")))
-                .andExpect(jsonPath("$[2].price", is(1)))
+                .andExpect(jsonPath("$[2].price", is("1")))
                 .andExpect(jsonPath("$[2].unit", is("瓶")))
                 .andExpect(jsonPath("$[2].imgUrl", is("../images/spirit.jpg")))
                 .andExpect(status().isOk());
