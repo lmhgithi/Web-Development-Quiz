@@ -42,6 +42,7 @@ class Orders extends Component {
                     <h2>单价</h2>
                     <h2>数量</h2>
                     <h2>单位</h2>
+                    <h2>操作</h2>
                 </div>
                 {
                     this.state.data.map(order => (
