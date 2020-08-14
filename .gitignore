@@ -1,0 +1,48 @@
+### back-end ###
+back-end/HELP.md
+back-end/.gradle
+back-end/build/
+back-end/!gradle/wrapper/gradle-wrapper.jar
+back-end/!**/src/main/**
+back-end/!**/src/test/**
+
+### STS ###
+back-end/.apt_generated
+back-end/.classpath
+back-end/.factorypath
+back-end/.project
+back-end/.settings
+back-end/.springBeans
+back-end/.sts4-cache
+
+### IntelliJ IDEA ###
+back-end/.idea
+back-end/*.iws
+back-end/*.iml
+back-end/*.ipr
+back-end/out/
+
+### NetBeans ###
+back-end/nbproject/private/
+back-end/nbbuild/
+back-end/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+back-end/.vscode/
+
+
+
+### font-end ###
+font-end/node_modules/
+font-end/.DS_Store
+font-end/Thumbs.db
+font-end/.idea/
+font-end/.vscode/
+font-end/*.sublime-project
+font-end/*.sublime-workspace
+font-end/*.log
+font-end/package-lock.json
+font-end/.cache/
+font-end/dist/
