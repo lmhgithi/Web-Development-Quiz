@@ -49,4 +49,13 @@ public class OrderService {
     public ResponseEntity<List<OrderEntity>> getAllOrders() {
         return ResponseEntity.ok(orderRepository.findAll());
     }
+
+    public ResponseEntity deleteOrderById(int id) {
+        if (orderRepository.findById(id).isPresent()) {
+            orderRepository.deleteById(id);
+            return ResponseEntity.ok().build();
+        }else{
+            return ResponseEntity.badRequest().build();
+        }
+    }
 }

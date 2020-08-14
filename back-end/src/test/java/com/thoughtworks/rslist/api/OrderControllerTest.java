@@ -18,8 +18,7 @@ import java.util.List;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -82,6 +81,14 @@ class OrderControllerTest {
                 .andExpect(jsonPath("$[0].quantity", is(1)))
                 .andExpect(jsonPath("$[0].unit", is("瓶")))
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    void shouldDeleteOrder() throws Exception {
+        int orderIdToDelete = orderRepository.findAll().get(0).getOrderId();
+        mockMvc.perform(delete("/order/"+orderIdToDelete))
+                .andExpect(status().isOk());
+        assertEquals(1, orderRepository.findAll().size());
     }
 
 }

@@ -25,4 +25,10 @@ public class OrderController {
         return orderService.getAllOrders();
     }
 
+    @DeleteMapping("/order/{id}")
+    @CrossOrigin
+    public ResponseEntity<List<OrderEntity>> deleteOrderById(@PathVariable int id) {
+        return orderService.deleteOrderById(id);
+    }
+
 }
