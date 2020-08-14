@@ -4,6 +4,7 @@ import { Route, BrowserRouter, Link, Switch } from "react-router-dom";
 
 import NotMatch from './NotMatch'
 import Product from './Products';
+import Order from './Orders';
 
 class App extends Component {
   render() {
@@ -12,10 +13,12 @@ class App extends Component {
         <BrowserRouter>
           <div className="header">
             <Link className='homeLink' to="/">商城</Link>
+            <Link className='orderLink' to="/order">订单</Link>
           </div>
           <div className="body">
             <Switch>
               <Route exact path='/' component={Product} />
+              <Route exact path='/order' component={Order} />
               <Route component={NotMatch} />
             </Switch>
           </div>
