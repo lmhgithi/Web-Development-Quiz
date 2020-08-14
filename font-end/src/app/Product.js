@@ -12,8 +12,7 @@ class Product extends Component {
                 <img className='productImg' src={img} alt='placeHoder' />
                 <div className='info'>
                     <h2>{this.props.product.name}</h2>
-                    {/* {this.state.product.price} */}
-                    <p className='unit'>单价：1/{this.props.product.unit}</p>
+                    <p className='unit'>单价：{this.props.product.price}/{this.props.product.unit}</p>
                 </div>
 
 
