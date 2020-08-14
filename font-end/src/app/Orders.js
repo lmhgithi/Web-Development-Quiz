@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Order from './Order'
 import '../styles/Orders.less'
+import OrderNotExists from './OrderNotExists'
 
 class Orders extends Component {
     state = {
@@ -10,7 +11,7 @@ class Orders extends Component {
     componentDidMount = () => {
         URL = "http://localhost:8080/order"
         fetch(URL, {
-            method:"GET",
+            method: "GET",
         }).then(Response => {
             if (Response.status === 200) {
                 return Response.json();
@@ -20,12 +21,18 @@ class Orders extends Component {
             }
         }).then(jsonData => {
             console.log(jsonData)
-            this.setState({
-                data: jsonData,
-            })
+            if (jsonData.length === 0) {
+                this.props.history.push('/orderNotExixts')
+            }
+            else {
+                this.setState({
+                    data: jsonData,
+                })
+            }
         })
 
     }
+
     render() {
         console.log(this.state.data)
         return (
@@ -39,8 +46,8 @@ class Orders extends Component {
                 {
                     this.state.data.map(order => (
                         <Order
-                        key = {order.name}
-                        order = {order}
+                            key={order.name}
+                            order={order}
                         />
                     ))
                 }

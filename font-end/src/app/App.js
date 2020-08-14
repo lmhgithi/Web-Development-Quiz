@@ -5,6 +5,7 @@ import { Route, BrowserRouter, Link, Switch } from "react-router-dom";
 import NotMatch from './NotMatch'
 import Product from './Products';
 import Order from './Orders';
+import orderNotExists from './OrderNotExists';
 
 class App extends Component {
   render() {
@@ -19,6 +20,7 @@ class App extends Component {
             <Switch>
               <Route exact path='/' component={Product} />
               <Route exact path='/order' component={Order} />
+              <Route exact path='/orderNotExixts' component={orderNotExists} />
               <Route component={NotMatch} />
             </Switch>
           </div>
