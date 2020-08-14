@@ -7,6 +7,7 @@ import com.thoughtworks.rslist.repository.ProductRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -27,7 +28,7 @@ public class OrderService {
         if (productEntity.isPresent()) {
             Optional<OrderEntity> orderEntityExist = orderRepository.findByName(productEntity.get().getName());
             if (orderEntityExist.isPresent()) {
-                orderEntityExist.get().setQuantity(orderEntityExist.get().getQuantity()+1);
+                orderEntityExist.get().setQuantity(orderEntityExist.get().getQuantity() + 1);
                 orderRepository.save(orderEntityExist.get());
             } else {
                 OrderEntity orderEntityNewCreate = OrderEntity.builder()
@@ -43,5 +44,9 @@ public class OrderService {
             return ResponseEntity.ok().build();
         }
         return ResponseEntity.badRequest().build();
+    }
+
+    public ResponseEntity<List<OrderEntity>> getAllOrders() {
+        return ResponseEntity.ok(orderRepository.findAll());
     }
 }
